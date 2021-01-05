@@ -11,6 +11,29 @@ body{
 }
 
 
+.bgImg{
+   position: absolute;
+   background: url(pixel.jpg);
+   height: 100vh;
+   width: 100%;
+   background-size: cover;
+   background-position: 0 0;
+   background-repeat: repeat-x;
+   image-rendering: pixelated;
+}
+
+.bg-animation{
+    animation: animate 15s linear infinite;
+}
+
+@keyframes animate{
+    from{
+        background-position: 0 0;
+    }
+    to{
+        background-position: 100% 0;
+    }
+}
 
 .Charecter{
     width: calc(23px * var(--player-size));

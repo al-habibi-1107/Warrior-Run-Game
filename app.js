@@ -1,10 +1,18 @@
 var canvas = document.getElementById('canv');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight
 var canvasElement = canvas.getContext("2d");
+// to manipulate player sprite
 var playerImg = document.getElementById("charImg");
+// to chnage the sprite effects
 var playerContainer = document.querySelector(".Charecter");
+// to make the sizing better
 var playerSize = getComputedStyle(document.documentElement)
 .getPropertyValue('--player-size');
+// the background music
 var audio = document.querySelector("#myAudio");
+// the animated background image
+var bgImg = document.querySelector(".bgImg")
 
 
 class Player {
@@ -32,7 +40,10 @@ class Player {
             this.ySpeed = 0;
             this.xSpeed = 1.8;
             canJump = true;
+            // start the player sprite animation
             playerImg.classList.add('addAnimation');
+            // start the background animation
+            bgImg.classList.add('bg-animation')
         }else{
             canJump = false
         }
@@ -96,7 +107,7 @@ function update(){
         obstacles[i].show()
         obstacles[i].x -= p.xSpeed
     }
-    console.log(i);
+    
     
 }
 
