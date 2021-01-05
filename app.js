@@ -4,6 +4,8 @@ var playerImg = document.getElementById("charImg");
 var playerContainer = document.querySelector(".Charecter");
 var playerSize = getComputedStyle(document.documentElement)
 .getPropertyValue('--player-size');
+var audio = document.querySelector("#myAudio");
+
 
 class Player {
     constructor(x,y){
@@ -64,11 +66,13 @@ var canJump = false;
 
 
 window.onload= function(){
+    
     start();
     setInterval(update,10)
 };
 
 function start(){
+   
     //player
     p = new Player(40,40)
     p.show()
@@ -92,19 +96,22 @@ function update(){
         obstacles[i].show()
         obstacles[i].x -= p.xSpeed
     }
+    console.log(i);
     
 }
 
 function keyDown(key){
-    console.log(key);
+    audio.play()
     if(key.keyCode == 32&&canJump){
         p.ySpeed -= 7;
+        playerImg.classList.remove('addAnimation');
     }
 }
 
 function keyUp(key){
     if(key.keyCode == 32){
         p.ySpeed = 0;
+        playerImg.classList.add('addAnimation');
     }
 }
 
