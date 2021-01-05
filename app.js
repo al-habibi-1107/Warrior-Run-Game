@@ -36,7 +36,7 @@ class Player {
 
         playerContainer.style.top =`${this.y}px`;
         
-        if(this.y > 750-this.h){
+        if(this.y >= window.innerHeight-80-this.h){
             this.ySpeed = 0;
             this.xSpeed = 1.8;
             canJump = true;
@@ -89,7 +89,7 @@ function start(){
     p.show()
     // obstacle
     for(i=0;i<10;i++){
-        var newObstacle = new Obstacle(obstacleXPos,750-50)
+        var newObstacle = new Obstacle(obstacleXPos,window.innerHeight-80-50)
         obstacles.push(newObstacle);
         obstacleXPos+=Math.round(Math.random()*400)+200;
     }
@@ -99,7 +99,7 @@ function update(){
     canvas.width = canvas.width;
 
     canvasElement.fillStyle = 'green'
-    canvasElement.fillRect(0,750,900,50);
+    canvasElement.fillRect(0,window.innerHeight-80,window.innerWidth,80);
     // show the player
     p.update()
     // show the obstacles
