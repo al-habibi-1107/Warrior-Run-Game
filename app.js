@@ -20,6 +20,7 @@ class Player {
         this.x = x;
         this.y = y;
         this.h = playerSize*30
+        this.w = playerSize*22
         this.xSpeed = 0;
         this.ySpeed = 0;
     }
@@ -65,9 +66,21 @@ class Obstacle{
         canvasElement.fillRect(this.x,this.y,this.w,this.h)
     }
 
+    update(){
+        if(((p.x+p.w)>=this.x)&&((p.x+p.w)<=this.x+this.w)&&((p.y+p.h)>=this.y)){
+            p.xSpeed = 0;
+            bgImg.classList.remove('bg-animation')
+            playerImg.classList.remove('addAnimation');
+            playerImg.classList.add('opacityDown')
+
+            
+        }
+    }
    
    
 }
+
+
 
 var obstacles = [];
 var obstacleXPos = 500
@@ -105,6 +118,7 @@ function update(){
     // show the obstacles
     for(i=0;i<10;i++){
         obstacles[i].show()
+        obstacles[i].update()
         obstacles[i].x -= p.xSpeed
     }
     

@@ -38,13 +38,13 @@ body{
 .Charecter{
     width: calc(23px * var(--player-size));
     height: calc(30px * var(--player-size));
-
-    /* background: red; */
     overflow: hidden;
     image-rendering: pixelated;
     position: relative;
     
 }
+
+
 
 #canv{
     position: absolute;
@@ -55,9 +55,12 @@ body{
     display: none;
     width: calc(200px*var(--player-size)) ;
     height: calc(125px*var(--player-size)) ;
-   
     position: absolute;
     z-index: 100;
+}
+
+.opacityDown{
+    opacity: 0.3;
 }
 
 .addAnimation{
