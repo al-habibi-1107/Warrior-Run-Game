@@ -177,13 +177,11 @@ soundIcon.addEventListener("click",function(){
 window.onkeydown = keyDown;
 
 
-window.addEventListener("click",function(){
-    keyDown
+window.addEventListener("touchstart",function(){
+    keyDown({keyCode:32});
 });
 
-window.addEventListener("touchend",function(){
-    keyUp
-});
+
 
 reloadBtn.addEventListener("click",function(){
     location.reload()
