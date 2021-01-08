@@ -56,6 +56,7 @@ body{
     width: calc(200px*var(--player-size)) ;
     height: calc(125px*var(--player-size)) ;
     position: absolute;
+    image-rendering: pixelated;
     z-index: 100;
 }
 
@@ -69,6 +70,47 @@ body{
 
 .moveRight{
     top: calc(-95px * var(--player-size));
+}
+
+.sound-img{
+    width: 50px;
+    position: absolute;
+    top: 50px;
+    right: 50px;
+}
+
+.game-over{
+    position: absolute;
+    left: -30%;
+    width: 400px;
+    height: 400px;
+    background: rgba( 255, 255, 255, 0.25 );
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.game-over button{
+    padding: 10px 20px;
+    background: black;
+    color: white;
+    border: none;
+    font-size: 20;
+}
+
+.game-over button:hover{
+    cursor: pointer;
+}
+
+.show-game-over{
+    left: 30%;
 }
 
 @keyframes moveSprite{

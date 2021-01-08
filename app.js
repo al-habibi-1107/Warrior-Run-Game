@@ -1,3 +1,14 @@
+// ON Deployment the pixel while animation blurrs
+// The collision isnt that accurate -- fixed
+// player after collision is stuck,change bg -- added game over screen
+// sound just pops up - make a volume button to mute it -- fixed
+// mobile phone compatibility -- partial
+
+
+
+
+
+
 var canvas = document.getElementById('canv');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight
@@ -12,7 +23,13 @@ var playerSize = getComputedStyle(document.documentElement)
 // the background music
 var audio = document.querySelector("#myAudio");
 // the animated background image
-var bgImg = document.querySelector(".bgImg")
+var bgImg = document.querySelector(".bgImg");
+// sound icon
+var soundIcon = document.getElementById("song-img");
+// Game Over panel 
+var gameover = document.querySelector(".game-over");
+// reload button
+var reloadBtn = document.querySelector(".reload");
 
 
 class Player {
@@ -20,7 +37,7 @@ class Player {
         this.x = x;
         this.y = y;
         this.h = playerSize*30
-        this.w = playerSize*22
+        this.w = playerSize*20
         this.xSpeed = 0;
         this.ySpeed = 0;
     }
@@ -69,9 +86,10 @@ class Obstacle{
     update(){
         if(((p.x+p.w)>=this.x)&&((p.x+p.w)<=this.x+this.w)&&((p.y+p.h)>=this.y)){
             p.xSpeed = 0;
-            bgImg.classList.remove('bg-animation')
+            gameover.classList.add("show-game-over");
+            bgImg.classList.remove('bg-animation');
             playerImg.classList.remove('addAnimation');
-            playerImg.classList.add('opacityDown')
+            playerImg.classList.add('opacityDown');
 
             
         }
@@ -87,6 +105,7 @@ var obstacleXPos = 500
 var p;
 var gravity = 0.1;
 var canJump = false;
+var soundPlays = false;
 
 
 window.onload= function(){
@@ -113,6 +132,9 @@ function update(){
 
     canvasElement.fillStyle = 'green'
     canvasElement.fillRect(0,window.innerHeight-80,window.innerWidth,80);
+
+   
+
     // show the player
     p.update()
     // show the obstacles
@@ -126,7 +148,6 @@ function update(){
 }
 
 function keyDown(key){
-    audio.play()
     if(key.keyCode == 32&&canJump){
         p.ySpeed -= 7;
         playerImg.classList.remove('addAnimation');
@@ -140,4 +161,23 @@ function keyUp(key){
     }
 }
 
+soundIcon.addEventListener("click",function(){
+    console.log("clicked");
+    if(soundPlays===true){
+        console.log("sound on");
+        soundPlays=!soundPlays;
+        audio.pause();
+    }else{
+        console.log("sound off");
+        soundPlays=!soundPlays;
+        audio.play()
+    }
+})
+
 window.onkeydown = keyDown;
+window.ontouchstart = keyDown;
+window.ontouchend = keyUp;
+
+reloadBtn.addEventListener("click",function(){
+    location.reload()
+});

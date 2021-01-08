@@ -11,12 +11,17 @@
     <audio id="myAudio">
         <source src="./bg-sound.mp3" type="audio/mpeg">
     </audio>
+    
     <canvas id="canv" width="1000" height="800">
     </canvas>
     <div class="Charecter" >
         <img class="Charecter-sprite moveRight" id="charImg" src="./sprite.png" alt="Charecter"/>
     </div>
-
+    <img id="song-img" class="sound-img" src="./music-sound.png" alt="song">
+    <div class="game-over">
+        <h1>Game Over</h1>
+        <button class="reload">Replay</button>
+    </div>
     <script src="./app.js"></script>
 </body>
 </html>
