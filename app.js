@@ -175,8 +175,15 @@ soundIcon.addEventListener("click",function(){
 })
 
 window.onkeydown = keyDown;
-window.ontouchstart = keyDown;
-window.ontouchend = keyUp;
+
+
+window.addEventListener("touchstart",function(){
+    keyDown
+});
+
+window.addEventListener("touchend",function(){
+    keyUp
+});
 
 reloadBtn.addEventListener("click",function(){
     location.reload()

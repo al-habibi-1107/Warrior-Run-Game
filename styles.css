@@ -81,7 +81,7 @@ body{
 
 .game-over{
     position: absolute;
-    left: -30%;
+    left: -100%;
     width: 400px;
     height: 400px;
     background: rgba( 255, 255, 255, 0.25 );
