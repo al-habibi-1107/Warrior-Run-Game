@@ -177,7 +177,7 @@ soundIcon.addEventListener("click",function(){
 window.onkeydown = keyDown;
 
 
-window.addEventListener("touchstart",function(){
+window.addEventListener("click",function(){
     keyDown
 });
 
