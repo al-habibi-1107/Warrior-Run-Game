@@ -61,11 +61,17 @@ class Player {
             // start the player sprite animation
             playerImg.classList.add('addAnimation');
             // start the background animation
-            bgImg.classList.add('bg-animation')
+            bgImg.classList.add('bg-animation');
+            // end game
+            if(jumpCount >= 10){
+                this.xSpeed =0;
+                gameOverEffects();
+            }
         }else{
             canJump = false
         }
          
+       
     }
 }
 
@@ -86,18 +92,20 @@ class Obstacle{
     update(){
         if(((p.x+p.w)>=this.x)&&((p.x+p.w)<=this.x+this.w)&&((p.y+p.h)>=this.y)){
             p.xSpeed = 0;
-            gameover.classList.add("show-game-over");
-            bgImg.classList.remove('bg-animation');
-            playerImg.classList.remove('addAnimation');
-            playerImg.classList.add('opacityDown');
-
-            
+           gameOverEffects();   
         }
+       
     }
    
    
 }
 
+function gameOverEffects(){
+    gameover.classList.add("show-game-over");
+    bgImg.classList.remove('bg-animation');
+    playerImg.classList.remove('addAnimation');
+    playerImg.classList.add('opacityDown');
+}
 
 
 var obstacles = [];
@@ -106,6 +114,7 @@ var p;
 var gravity = 0.1;
 var canJump = false;
 var soundPlays = false;
+var jumpCount=0;
 
 
 window.onload= function(){
@@ -145,21 +154,24 @@ function update(){
     }
     
     
+    
 }
 
 function keyDown(key){
     if(key.keyCode == 32&&canJump){
         p.ySpeed -= 7;
+        jumpCount++;
         playerImg.classList.remove('addAnimation');
     }
 }
 
-function keyUp(key){
-    if(key.keyCode == 32){
-        p.ySpeed = 0;
-        playerImg.classList.add('addAnimation');
-    }
-}
+// function keyUp(key){
+//     if(key.keyCode == 32){
+//         p.ySpeed = 0;
+//         jumpCount++;
+//         playerImg.classList.add('addAnimation');
+//     }
+// }
 
 soundIcon.addEventListener("click",function(){
     console.log("clicked");
@@ -181,7 +193,9 @@ window.addEventListener("touchstart",function(){
     keyDown({keyCode:32});
 });
 
-
+window.addEventListener("resize",function(){
+    location.reload();
+})
 
 reloadBtn.addEventListener("click",function(){
     location.reload()
